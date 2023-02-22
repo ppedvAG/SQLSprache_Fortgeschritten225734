@@ -51,13 +51,46 @@ order by
 
 
 
+		---
+--alle Kunden, die nichts kauften
+select c.* from 
+		customers c left join orders o on c.customerid = o.customerid
+		 where 
+						o.orderid is null
+
+
+ select c.* from 
+		 orders o  right join customers c on c.customerid = o.customerid
+		 where 
+						o.orderid is null
+
+
+   select c.* from 
+		 orders o  full join customers c on c.customerid = o.customerid
+		 where 
+						o.orderid is null
+
+   
+   select *  from 
+		 orders o  cross join customers c
+
+		 select 91*830*2155
+
+
+select * from customers c, orders	 o
+where o.customerid= c.customerid
+
+
+select * from customers c 
+					inner	 join orders o on c.customerid = o.customerid
+
+
+select * from customers c 
+					inner loop	 join orders o on c.customerid = o.customerid
 
 
 
-
-
-
-
-
+select * from customers c 
+					inner hash	 join orders o on c.customerid = o.customerid
 
 
