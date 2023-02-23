@@ -134,6 +134,45 @@ FROM dbo.Employees;
 
   */
 
+  declare @spalten as nvarchar(1000)
+
+  select @spalten=string_Agg( name, ',') from sys.columns
+  where object_id=object_id('customers')
+
+  select @spalten
+
+  declare @sqltext as nvarchar(max)
+
+  set @sqltext= 'create view vdemoxy as select ' + @spalten + ' from customers'
+
+  select @sqltext
+
+create or alter proc gpGenView @Sichtname nvarchar(50), @Tabname nvarchar(50)
+as
+declare @spalten as nvarchar(1000)
+
+select @spalten=string_Agg( name, ',') from sys.columns
+			where object_id=object_id(@tabname)
+select @spalten
+declare @sqltext as nvarchar(max)
+
+set @sqltext= 'create view ' + @Sichtname  + ' as select ' + @spalten + ' from ' + @Tabname
+
+select  @sqltext
+
+ exec gpGenView 'vCustomers', 'customers'
+
+ create view vCustomers 
+ as
+ select CustomerID,CompanyName,ContactName,ContactTitle,Address,City,Region,PostalCode,Country,Phone,Fax 
+ from customers
+
+
+
+
+
+
+
 
 
 
