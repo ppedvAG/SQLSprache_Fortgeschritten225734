@@ -31,10 +31,41 @@
           <AssociatedConnUserName />
           <FullPath>02_Join.sql</FullPath>
         </FileNode>
+        <FileNode Name="03_Sichten.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:KAIRO:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>KAIRO</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>03_Sichten.sql</FullPath>
+        </FileNode>
+        <FileNode Name="04_Probleme bei F().sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:KAIRO:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>KAIRO</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>04_Probleme bei F().sql</FullPath>
+        </FileNode>
+        <FileNode Name="05_UNION_EXCEPT_INTERSECT.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:KAIRO:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>KAIRO</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>05_UNION_EXCEPT_INTERSECT.sql</FullPath>
+        </FileNode>
+        <FileNode Name="X_Messen.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:KAIRO:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>KAIRO</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>X_Messen.sql</FullPath>
+        </FileNode>
       </Items>
     </LogicalFolder>
     <LogicalFolder Name="Sonstiges" Type="3" Sorted="true">
-      <Items />
+      <Items>
+        <FileNode Name="04_Problem bei Funktionenl">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>04_Problem bei Funktionenl</FullPath>
+        </FileNode>
+      </Items>
     </LogicalFolder>
   </Items>
 </SqlWorkbenchSqlProject>

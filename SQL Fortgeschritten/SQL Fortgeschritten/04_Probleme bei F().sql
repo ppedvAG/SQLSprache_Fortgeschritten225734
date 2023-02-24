@@ -79,3 +79,11 @@ from customers c inner join orders o on c.customerid = o.customerid
 alter table orders add RngSumme as dbo.fRngsumme(orderid)
 
 select * from orders  where rngsumme < 400
+
+
+
+dbcc showcontig('orders')
+
+select * from customers
+
+email
