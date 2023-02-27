@@ -1,9 +1,21 @@
 						 --Window Function
 --DENSE RANK  NTILE   RANK
 
+ 
+select orderid, employeeid, customerid, freight, 
+ROW_NUMBER() over (order by freight desc) RowNumber
+from orders order by employeeid asc	 , freight	 desc
+
+;with cte
+as
+(
 select orderid, employeeid, customerid, freight, 
 ROW_NUMBER() over (partition by employeeid order by freight desc) Rang
-from orders order by employeeid asc	 , freight	 desc
+from orders 
+---where rang between 1 and 3
+--order by employeeid asc	 , freight	 desc
+) 
+select * from cte where rang between 1 and 3
 
 
 
@@ -25,15 +37,33 @@ select freight , rank() over (order by freight),
 				dense_Rank() over (order by freight) from orders
 order by freight asc
 
+ ---Frage: select * from orders
+
+
+
 
 
 
 ----NTILE----
 --aufteilen in gleiche Anzahl ---
 
-select ntile(3) over (order by freight)
+select ntile(4) over (order by freight)
 , freight from orders
 
+--Freight 0 100 A
+--100  bis 500 B
+--> 500 C
+
+
+
+select 
+		customerid, freight , 
+				case 
+					when  freight < 100 then 'A'
+					when  freight > 500 then 'C'
+					else 'B'
+				end as Kunden
+from orders
 
 --NTILE(4) 4 gleiche teile
 
@@ -77,9 +107,27 @@ from orders
 --ROW_NUMBER------------
 --fortlaufende Zahl--
 
-
-
 select APPROX_COUNT_DISTINCT(customerid) from ku
+
+
+
+select 	
+	 orderid,productid
+	 ,sum(unitprice*quantity) over (partition by orderid)  as RngSumme
+	  ,unitprice*quantity
+	 from [Order Details]
+	 order by 1,2
+
+
+  select * from [order details]
+
+
+
+
+
+
+
+
 
 
 
@@ -88,15 +136,20 @@ select APPROX_COUNT_DISTINCT(customerid) from ku
 --Anteil der Pos in % rel zur Rechnugssumme
 select 
 		orderid,productid, 
-	sum(unitprice*quantity) over (partition by orderid),
+	 sum(unitprice*quantity) over (partition by orderid),
 	 cast(1 *  (unitprice*quantity)/sum(unitprice*quantity) over (partition by orderid) 
 		* 100 as Decimal(5,2))
 	 from [Order Details]
 	 order by 1,4
 
  -----------------------------------------------------------------------------------------------------
- 
 
+
+ select eomonth(getdate())
+
+
+ 
+drop table t
  CREATE TABLE T (a INT, b INT, c INT);   
 GO  
 INSERT INTO T VALUES (1, 1, -3), (2, 2, 4), (3, 1, NULL), (4, 3, 1), (5, 2, NULL), (6, 1, 5);   
@@ -187,7 +240,8 @@ select * from products
 --Welche Produkte wurden am meisten pro QUarta und Jahr am besten verkauft
 with cte as
 (
-select productname, year(orderdate)	as jahr ,datepart(qq,orderdate)as Quartal,  sum(od.quantity)  as Menge	,
+select productname, year(orderdate)	as jahr ,datepart(qq,orderdate)as Quartal, 
+		sum(od.quantity)  as Menge	,
 		 rank() over (partition by  year(orderdate), datepart(qq,orderdate) order by  sum(od.quantity) desc)  as RANG
 
 from 

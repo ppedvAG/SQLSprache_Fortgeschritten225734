@@ -7,6 +7,9 @@ select @var
 --Sichtbarkeit @var = lokale Variable mur der Ersteller
 
 --globale Variable: SystemInfos
+--Variablen sind im Code schlecht vorher einschätzbar
+--var Datentypen werden nur zu 50% im Arbeitsspeicher eingeschätzt
+--evtl Sort warnings Problem -beim Lesen Schreiben in TempDB
 
 
 
